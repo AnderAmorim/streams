@@ -1,6 +1,8 @@
 import {Duplex, Readable, Transform, Writable} from 'stream'
 import { pipeline } from 'stream/promises'
 
+import { createReadStream } from "fs"
+
 // fonte
 const readable = Readable({
   read() {
@@ -41,7 +43,7 @@ async function* writableIterator(stream){
 
 
 await pipeline(
-  readable,
+  readableIterator,
   writableIterator
 )
 
