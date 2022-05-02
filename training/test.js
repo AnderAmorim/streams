@@ -38,7 +38,7 @@ async function* readableIterator(stream){
 
 async function * writableIterator(stream){
   for await(const chunk of stream){
-    console.log('[writable]', chunk.toString())
+    console.log(chunk.toString())
   }
 }
 
