@@ -1,0 +1,6 @@
+[duplex writable] This_is_my
+[duplex writable] custom_readble
+[writable] wholeString This_is_my,custom_readble
+[writable] bytesRead 24
+ The operation was aborted
+process has finished

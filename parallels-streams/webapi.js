@@ -1,43 +1,54 @@
 import http from 'http'
 import { Readable } from 'stream'
+function api1(request, response) {
 
-let count = 0;
-const maxItens = 99
-const api1 = (request,response)=>{
-  const readable = Readable({
-    read(){
-      const everySecond = (intervalContext) => {
-        if(count++ <= maxItens){
-          this.push(JSON.stringify({id:Date.now() + count, name:`Anderson-${count}`}))
-          this.push('\n')
-          return;
-        }
-        clearInterval(intervalContext)
-        this.push(null)
-      }
-      setInterval(function(){everySecond(this)}) 
-    }
-  })
-  readable.pipe(response)//dando pipe na writable stream
+    // response.write('test01\n')
+    // response.write('test02\n')
+    // response.write('test03\n')
+
+    // request.pipe(response)
+
+    let count = 0;
+    const maxItems = 99
+    const readable = Readable({
+        read() {
+            const everySecond = (intervalContext) => {
+                if (count++ <= maxItems) {
+                    this.push(JSON.stringify({ id: Date.now() + count, name: `Erick-${count}` }) + "\n")
+                    return;
+                }
+                clearInterval(intervalContext)
+                this.push(null)
+            }
+
+            setInterval(function () { everySecond(this) })
+        },
+    })
+
+    readable.pipe(response)
 }
 
-const api2 = (request,response)=>{
-  const readable = Readable({
-    read(){
-      const everySecond = (intervalContext) => {
-        if(count++ <= maxItens){
-          this.push(JSON.stringify({id:Date.now() + count, name:`Teste-${count}`}))
-          this.push('\n')
-          return;
-        }
-        clearInterval(intervalContext)
-        this.push(null)
-      }
-      setInterval(function(){everySecond(this)}) 
-    }
-  })
-  readable.pipe(response)//dando pipe na writable stream
+function api2(request, response) {
+    let count = 0;
+    const maxItems = 99
+    const readable = Readable({
+        read() {
+            const everySecond = (intervalContext) => {
+                if (count++ <= maxItems) {
+                    this.push(JSON.stringify({ id: Date.now() + count, name: `Zézin-${count}` }) + "\n")
+                    return;
+                }
+                clearInterval(intervalContext)
+                this.push(null)
+            }
+
+            setInterval(function () { everySecond(this) })
+        },
+    })
+
+    readable.pipe(response)
 }
 
-http.createServer(api1).listen(3000, ()=>console.log('listeing on 3000'))
-http.createServer(api2).listen(4000, ()=>console.log('listeing on 4000'))
+
+http.createServer(api1).listen(3000, () => console.log('server running at 3000'))
+http.createServer(api2).listen(4000, () => console.log('server running at 4000'))

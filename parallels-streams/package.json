@@ -5,9 +5,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-server": "node webapi.js",
+    "api1": "curl localhost:3000 | tee logs/api1.log",
+    "api2": "curl localhost:4000 | tee logs/api2.log",
+    "exemple01":"node exemples/1.concat.stream.pass.through.js | tee logs/1.concat.stream.pass.through.log",
+    "exemple02":"node exemples/2.async-streams.js | tee logs/2.async-streams.log",
+    "exemple03":"node exemples/3.concat.stream.async.iterators.js | tee logs/3.concat.stream.async.iterators.log"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }
