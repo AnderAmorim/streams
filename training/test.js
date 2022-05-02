@@ -31,13 +31,14 @@ const writable = Writable({
 
 async function* readableIterator(stream){
   for(let i=0; i<=1e3; i++){
-    yield Readable.from(`Index -> ${i}`)
+    yield Buffer.from(`Index -> ${i}`)
   }
 }
 
-async function* writableIterator(stream){
-  for(const chunk of stream){
-    console.log(chunk)
+
+async function * writableIterator(stream){
+  for await(const chunk of stream){
+    console.log('[writable]', chunk.toString())
   }
 }
 
