@@ -34,10 +34,9 @@ async function* readableIterator(stream){
 }
 
 async function* writableIterator(stream){
-  console.log(stream)
-  // for(const chunk of stream){
-  //   console.log(chunk)
-  // }
+  for(const chunk of stream){
+    console.log(chunk)
+  }
 }
 
 
